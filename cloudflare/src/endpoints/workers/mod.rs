@@ -12,6 +12,7 @@ mod delete_secret;
 mod delete_tail;
 mod list_routes;
 mod list_secrets;
+mod list_scripts;
 mod list_tails;
 mod send_tail_heartbeat;
 
@@ -24,6 +25,7 @@ pub use delete_secret::DeleteSecret;
 pub use delete_tail::DeleteTail;
 pub use list_routes::ListRoutes;
 pub use list_secrets::ListSecrets;
+pub use list_scripts::ListScripts;
 pub use list_tails::ListTails;
 pub use send_tail_heartbeat::SendTailHeartbeat;
 
@@ -78,3 +80,12 @@ pub struct WorkersTail {
 
 impl ApiResult for WorkersTail {}
 impl ApiResult for Vec<WorkersTail> {}
+
+// some description
+#[derive(Deserialize, Serialize, Debug, Clone, PartialEq, Eq)]
+pub struct WorkersScript {
+    pub id: String,
+}
+
+impl ApiResult for WorkersScript {}
+impl ApiResult for Vec<WorkersScript>{}
