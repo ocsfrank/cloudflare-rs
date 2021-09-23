@@ -6,10 +6,12 @@ use serde::Deserialize;
 mod create_route;
 mod create_secret;
 mod create_tail;
+mod delete_do;
 mod delete_route;
 mod delete_script;
 mod delete_secret;
 mod delete_tail;
+mod list_bindings;
 mod list_routes;
 mod list_secrets;
 mod list_scripts;
@@ -19,10 +21,12 @@ mod send_tail_heartbeat;
 pub use create_route::{CreateRoute, CreateRouteParams};
 pub use create_secret::{CreateSecret, CreateSecretParams};
 pub use create_tail::{CreateTail, CreateTailParams};
+pub use delete_do::DeleteDurableObject;
 pub use delete_route::DeleteRoute;
 pub use delete_script::DeleteScript;
 pub use delete_secret::DeleteSecret;
 pub use delete_tail::DeleteTail;
+pub use list_bindings::ListBindings;
 pub use list_routes::ListRoutes;
 pub use list_secrets::ListSecrets;
 pub use list_scripts::ListScripts;
@@ -81,7 +85,7 @@ pub struct WorkersTail {
 impl ApiResult for WorkersTail {}
 impl ApiResult for Vec<WorkersTail> {}
 
-// some description
+// Script associated to an account ID
 #[derive(Deserialize, Serialize, Debug, Clone, PartialEq, Eq)]
 pub struct WorkersScript {
     pub id: String,
@@ -89,3 +93,16 @@ pub struct WorkersScript {
 
 impl ApiResult for WorkersScript {}
 impl ApiResult for Vec<WorkersScript>{}
+
+// Binding for a Workers Script
+#[derive(Deserialize, Serialize, Debug, Clone, PartialEq, Eq)]
+pub struct WorkersBinding {
+    pub name: String,
+    pub r#type: String,
+    pub namespace_id: String,
+    pub class_name: Option<String>,
+}
+
+impl ApiResult for WorkersBinding {}
+impl ApiResult for Vec<WorkersBinding>{}
+
