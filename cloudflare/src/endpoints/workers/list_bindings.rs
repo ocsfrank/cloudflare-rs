@@ -5,8 +5,10 @@ use super::WorkersBinding;
 /// Lists all bindings for a given script
 #[derive(Debug)]
 pub struct ListBindings<'a> {
+    /// account id of owner of the script
     pub account_id: &'a str,
-    pub script_id: &'a str,
+    /// name of script to list bindings for
+    pub script_name: &'a str,
 }
 
 impl<'a> Endpoint<Vec<WorkersBinding>> for ListBindings<'a> {
@@ -18,7 +20,7 @@ impl<'a> Endpoint<Vec<WorkersBinding>> for ListBindings<'a> {
         format!(
             "accounts/{}/workers/scripts/{}/bindings",
             self.account_id,
-            self.script_id
+            self.script_name
         )
     }
 }

@@ -7,8 +7,8 @@ use crate::framework::response::ApiResult;
 pub struct DeleteScript<'a> {
     /// account id of owner of the script
     pub account_id: &'a str,
-    /// the name of the script to remove the secret from
-    pub script_id: &'a str,
+    /// the name of the script to be removed
+    pub script_name: &'a str,
 }
 
 impl<'a> Endpoint<ScriptDeleteID, (), ()> for DeleteScript<'a> {
@@ -18,7 +18,7 @@ impl<'a> Endpoint<ScriptDeleteID, (), ()> for DeleteScript<'a> {
     fn path(&self) -> String {
         format!(
             "accounts/{}/workers/scripts/{}",
-            self.account_id, self.script_id
+            self.account_id, self.script_name
         )
     }
 }
